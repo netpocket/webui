@@ -24,13 +24,13 @@ window.config = {
   }
 };
 
-NetpocketRails.initialize = function() {
+App.initialize = function() {
   "use strict";
 
   var app = window.app = {};
 
-  app.devices = new NetpocketRails.Collections.Devices();
-  app.devicesIndex = new NetpocketRails.Views.DevicesIndex(app.devices);
+  app.devices = new App.Collections.Devices();
+  app.devicesIndex = new App.Views.DevicesIndex(app.devices);
   app.devicesIndex.setElement($("body")).render();
 
   var socket = Primus.connect(config.url, config.spec);
