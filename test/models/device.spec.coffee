@@ -9,7 +9,7 @@ describe 'Device Model', ->
     conn = null
     beforeEach ->
       conn = nccWebui.connection =
-        socket: spark()
+        socket: sparkStub()
         emit: sinon.stub()
       @cbSpy = sinon.stub()
       @Device.useFeature('name:spa:cing', @cbSpy)
