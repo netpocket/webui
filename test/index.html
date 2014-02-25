@@ -16,16 +16,23 @@
         var expect = chai.expect;
     </script>
 
-    <!-- include source files here... -->
+    <script src="bower_components/jquery/jquery.js"></script>
+    <script src="bower_components/underscore/underscore.js"></script>
+    <script src="bower_components/backbone/backbone.js"></script>
 
-    <script src="test/routers/ncc.js"></script>
-    <script src="test/collections/devices.js"></script>
-    <script src="test/models/device.js"></script>
-    <script src="test/views/devices.js"></script>
-    <script src="test/views/device.js"></script>
-    <script src="test/models/connection.js"></script>
+    <!-- include source files here... -->
+    <script src="scripts/main.js"></script>
+    <script src="scripts/primus.js"></script>
+    <script src="scripts/templates.js"></script>
+    <script src="scripts/routes/ncc.js"></script>
+    <script src="scripts/models/device.js"></script>
+    <script src="scripts/collections/devices.js"></script>
+    <script src="scripts/views/devices.js"></script>
+    <script src="scripts/views/device.js"></script>
+    <script src="scripts/models/connection.js"></script>
+
     <!-- include spec files here... -->
-    <script src="spec/app_spec.js"></script>
+    <script src="spec/models/device.js"></script>
 
     <script>mocha.run()</script>
 </body>

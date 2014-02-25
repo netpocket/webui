@@ -37,7 +37,7 @@ module.exports = function (grunt) {
                 tasks: ['coffee:dist']
             },
             coffeeTest: {
-                files: ['test/spec/{,*/}*.coffee'],
+                files: ['test/{,*/}*.coffee'],
                 tasks: ['coffee:test']
             },
             compass: {
@@ -155,7 +155,7 @@ module.exports = function (grunt) {
             test: {
                 files: [{
                     expand: true,
-                    cwd: 'test/spec',
+                    cwd: 'test',
                     src: '{,*/}*.coffee',
                     dest: '.tmp/spec',
                     ext: '.js'
@@ -327,7 +327,7 @@ module.exports = function (grunt) {
                 'compass',
                 'connect:test',
                 'mocha',
-                'watch:test'
+                'watch:coffeeTest'
             ];
             
         if(!isConnected) {

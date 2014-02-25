@@ -3,4 +3,4 @@
 
 describe 'Device View', ->
   beforeEach ->
-    @Device = new nccWebui.Views.DeviceView();
+    @Device = new nccWebui.Views.DeviceView()
