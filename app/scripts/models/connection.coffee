@@ -11,7 +11,7 @@ class nccWebui.Models.ConnectionModel extends Backbone.Model
       console.log 'got message', data.args
       @socket.emit.apply @socket, data.args
     @socket.on 'please identify', =>
-      @emit 'i am a web browser', @token, {}
+      @emit @ident, @token, {}
     @socket.on 'a wild device appears', (device, data) =>
       @devices.add(_.extend(device, data))
     @socket.on 'a wild device disconnected', (device) =>

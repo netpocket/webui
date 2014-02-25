@@ -12,3 +12,4 @@ class nccWebui.Routers.NccRouter extends Backbone.Router
           devices: coll
           token: token
           url: 'http://'+host
+          ident: "i am a web browser"
