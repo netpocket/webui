@@ -5,11 +5,18 @@ describe 'Device Model', ->
   describe "useFeature", ->
     conn = null
     beforeEach ->
-      conn = nccWebui.connection =
-        socket: sparkStub()
-        emit: sinon.stub()
+      sinon.stub(Primus, 'connect').returns(sparkStub())
+      conn = nccWebui.connection = new nccWebui.Models.ConnectionModel
+        url: 'a url'
+        token: 'a token'
+        devices: {add:sinon.stub(), remove: sinon.stub()}
+      sinon.stub(conn, 'emit')
       @cbSpy = sinon.stub()
       @Device.useFeature('os:get:uptime', @cbSpy)
+
+    afterEach ->
+      Primus.connect.restore()
+      conn.emit.restore()
 
     it "registers a one-time listener for the response", ->
       expect(conn.socket).to.listenOnce('device:2')
