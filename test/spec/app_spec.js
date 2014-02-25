@@ -3,7 +3,7 @@
 (function () {
     'use strict';
 
-    describe('blas', function () {
+    describe('App', function () {
         it('should run here few assertions', function () {
             expect(true).to.eq(true);
         });

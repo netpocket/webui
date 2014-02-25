@@ -9,4 +9,4 @@ window.nccWebui =
 
 $ ->
   'use strict'
-  nccWebui.init();
+  nccWebui.init()
