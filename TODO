@@ -1,0 +1,3 @@
+* get tests back up to scratch
+* get coverage working
+* test/freeze useFeature so we can refactor
