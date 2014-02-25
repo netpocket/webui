@@ -6,13 +6,16 @@ describe 'Device Model', ->
     @Device = new nccWebui.Models.DeviceModel()
 
   describe "useFeature", ->
+    conn = null
     beforeEach ->
-      nccWebui.connection =
-        socket: socketStub()
+      conn = nccWebui.connection =
+        socket: spark()
         emit: sinon.stub()
       @cbSpy = sinon.stub()
       @Device.useFeature('name:spa:cing', @cbSpy)
 
     it "registers a one-time listener", ->
+      expect(conn.socket).to.listenOnce('device:1')
+
 
     it "sends the feature request", ->
