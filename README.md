@@ -3,9 +3,13 @@ ncc-webui
 
 netpocket control center web-based user interface
 
+## Preview
+
+* Run `grunt serve`
+
 ## TDD
 
-* Run `grunt test`
+* Run `grunt`
 
 * Open [localhost:9001/index.html](localhost:9001/index.html)
 
