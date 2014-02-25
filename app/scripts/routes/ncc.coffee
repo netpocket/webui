@@ -2,14 +2,13 @@
 
 class nccWebui.Routers.NccRouter extends Backbone.Router
     routes:
-        'devices/:token/:host': 'devices'
+        'ncc/:token/:host': 'ncc'
 
-    devices: (token, host) ->
-        console.log "connecting to ", host
-        @devices = new nccWebui.Collections.DevicesCollection()
-        @connection = new nccWebui.Models.ConnectionModel()
-        @connection.devices = @devices
-        @connection.set('token', token)
-        @connection.set('url', 'http://'+host)
-        @connection.continue()
-
+    ncc: (token, host) ->
+        coll = new nccWebui.Collections.DevicesCollection()
+        view = new nccWebui.Views.DevicesView(coll)
+        $('body .container').html(view.render().el)
+        nccWebui.connection = new nccWebui.Models.ConnectionModel
+          devices: coll
+          token: token
+          url: 'http://'+host

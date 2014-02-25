@@ -1,2 +1,18 @@
-<p>Your content here.</p>
-
+<span>id: <%= id %></span>
+<span>name: unnamed</span>
+<ul class="features">
+  <% for (name in features) { %>
+    <li class="feature">
+      <span><%= name %></span>
+      <ul class="actions">
+        <% for (action in features[name] ) { %>
+          <li>
+            <a href="#" data-name="<%= name %>:<%= action %>">
+              <%= action %>
+            </a>
+          </li>
+        <% } %>
+      </ul>
+    </li>
+  <% } %>
+</ul>
