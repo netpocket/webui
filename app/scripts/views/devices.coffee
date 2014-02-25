@@ -2,7 +2,6 @@
 
 class nccWebui.Views.DevicesView extends Backbone.View
     className: 'devices'
-    tagName: 'ul'
 
     initialize: (@collection) ->
         @listenTo @collection, "reset", @render
@@ -16,7 +15,7 @@ class nccWebui.Views.DevicesView extends Backbone.View
         return @
 
     renderDevice: (device) ->
-        device.view = new nccWebui.Views.DeviceView(device)
+        device.view = new nccWebui.Views.DeviceView({model:device})
         @$el.append(device.view.render().el)
 
     removeDevice: (device) ->

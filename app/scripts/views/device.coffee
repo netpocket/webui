@@ -2,21 +2,32 @@
 
 class nccWebui.Views.DeviceView extends Backbone.View
   template: JST['app/scripts/templates/device.ejs']
-  tagName: 'li'
-  className: "device"
+  className: "device panel panel-default"
 
   events:
-    'click .feature .actions a': 'useFeature'
+    'click .feature a': 'useFeature'
 
-  initialize: (@device) ->
+  initialize: (options) ->
+    @device = options.model
     @listenTo @device, "change", @render
 
   render: ->
     @$el.html @template @device.attributes
+    @display = @$('.display')
     return @
 
   useFeature: (e) ->
     e.preventDefault()
-    console.log("please wait! don't click that one again!")
+    @display.html('<span>Please wait...</span>')
     @device.useFeature $(e.target).data('name'), (err, res) =>
-      console.log("ok back!", err, res)
+      if (err)
+        @display.html('<pre>'+JSON.stringify(err)+'</pre>')
+      else if (res)
+        switch res.contentType
+          when "image/url"
+            @display.html('<img src="'+res.content+'"/>')
+          when "image/png"
+            @display.html('<img src="data:image/png;base64,'+res.content+'"/>')
+          else
+            # Assume it's just text or JSON
+            @display.html('<pre>'+js_beautify(JSON.stringify(res))+'</pre>')
