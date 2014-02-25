@@ -10,16 +10,22 @@ describe 'Ncc Router', ->
     renderSpy = null
     beforeEach ->
       renderSpy = sinon.stub().returns({el:''})
+      nccWebui.Views._DevicesView = nccWebui.Views.DevicesView
       nccWebui.Views.DevicesView = class extends Backbone.View
         initialize: (options) ->
           viewOpts = options
         render: renderSpy
+      nccWebui.Models._ConnectionModel = nccWebui.Models.ConnectionModel
       nccWebui.Models.ConnectionModel = class extends Backbone.Model
         initialize: (options) ->
           connOpts = options
           conn = @
       fn = @router[@router.routes['ncc/:token/:host']]
       fn('mytoken', 'somehost')
+
+    afterEach ->
+      nccWebui.Views.DevicesView = nccWebui.Views._DevicesView
+      nccWebui.Models.ConnectionModel = nccWebui.Models._ConnectionModel
 
     it 'creates a connection and attaches it to the root object', ->
       expect(nccWebui.connection).to.deep.eq(conn)
