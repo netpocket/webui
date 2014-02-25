@@ -1,4 +1,4 @@
-describe.only 'Connection Model', ->
+describe 'Connection Model', ->
   conn = null
   socket = null
   beforeEach ->
