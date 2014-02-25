@@ -25,8 +25,9 @@ class nccWebui.Models.ConnectionModel extends Backbone.Model
   # pattern for a request/response cycle
   doRequestResponse: (options) ->
     @socket.once options.target, (payload) ->
-      if (payload.cmd is "#{options.type} response" && _.isEqual(payload.args, args))
-        callback(payload.err, payload.res)
+      sameCmd = payload.cmd is "#{options.type} response"
+      sameArgs = _.isEqual(payload.args, options.args)
+      options.callback(payload.err, payload.res) if (sameCmd and sameArgs)
     @emit options.target,
       listen: "once"
       cmd: "#{options.type} request"
