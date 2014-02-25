@@ -21,3 +21,13 @@ class nccWebui.Models.ConnectionModel extends Backbone.Model
     args = Array.prototype.slice.call(arguments, 0)
     console.log 'sent message', args
     @socket.write({args:args})
+
+  # pattern for a request/response cycle
+  doRequestResponse: (options) ->
+    @socket.once options.target, (payload) ->
+      if (payload.cmd is "#{options.type} response" && _.isEqual(payload.args, args))
+        callback(payload.err, payload.res)
+    @emit options.target,
+      listen: "once"
+      cmd: "#{options.type} request"
+      args: options.args
