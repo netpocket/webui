@@ -1,18 +1,26 @@
-<span>id: <%= id %></span>
-<span>name: unnamed</span>
-<ul class="features">
-  <% for (name in features) { %>
-    <li class="feature">
-      <span><%= name %></span>
-      <ul class="actions">
-        <% for (action in features[name] ) { %>
-          <li>
-            <a href="#" data-name="<%= name %>:<%= action %>">
-              <%= action %>
-            </a>
-          </li>
-        <% } %>
-      </ul>
-    </li>
-  <% } %>
-</ul>
+  <div class="panel-heading">
+    <h3 class="panel-title"><%= name %></h3>
+  </div>
+  <div class="panel-body">
+    <div class="list-group">
+      <div class="list-group-item display">
+        <span>Nothing to display</span>
+      </div>
+      <% for (name in features) { %>
+        <div class="list-group-item feature">
+          <span class="list-group-item-heading"><%= name %></span>
+          <ul class="">
+            <% for (action in features[name] ) { %>
+              <div>
+                <a href="#" data-name="<%= name %>:<%= action %>">
+                  <%= action %>
+                </a>
+              </div>
+            <% } %>
+          </ul>
+        </div>
+      <% } %>
+    </div>
+  </div>
+</div>
+
