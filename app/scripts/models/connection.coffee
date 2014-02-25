@@ -1,4 +1,4 @@
-'use strict';
+'use strict'
 
 class nccWebui.Models.ConnectionModel extends Backbone.Model
     initialize: (options) ->

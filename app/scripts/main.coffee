@@ -6,7 +6,6 @@ window.nccWebui =
     init: ->
         'use strict'
         @router = new nccWebui.Routers.NccRouter()
-        console.log 'Hello from Backbone!'
         Backbone.history.start()
 
 $ ->

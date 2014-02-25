@@ -1,10 +1,10 @@
-'use strict';
+'use strict'
 
 class nccWebui.Routers.NccRouter extends Backbone.Router
     routes:
-        'ncc/:token/:host': 'ncc'
+        'ncc/:token/:host': 'index'
 
-    ncc: (token, host) ->
+    index: (token, host) ->
         coll = new nccWebui.Collections.DevicesCollection()
         view = new nccWebui.Views.DevicesView(coll)
         $('body .container').html(view.render().el)
