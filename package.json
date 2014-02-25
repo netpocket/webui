@@ -1,6 +1,7 @@
 {
   "name": "ncc-webui",
   "version": "0.0.0",
+  "description": "netpocket control center web-based user interface",
   "dependencies": {},
   "devDependencies": {
     "grunt": "~0.4.1",
@@ -28,5 +29,17 @@
   },
   "engines": {
     "node": ">=0.8.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/netpocket/ncc-webui.git"
+  },
+  "keywords": [
+    "netpocket"
+  ],
+  "author": "Keyvan Fatehi",
+  "license": "BSD-2-Clause",
+  "bugs": {
+    "url": "https://github.com/netpocket/ncc-webui/issues"
   }
 }
