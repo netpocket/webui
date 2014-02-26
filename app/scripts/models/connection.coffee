@@ -38,6 +38,7 @@ class nccWebui.Models.ConnectionModel extends Backbone.Model
       args: options.args
 
   # pattern for a stream
+  # might be overthinking this -- archive for now
   doStream: (featuretask, options) ->
     name = "#{options.target}:stream:#{featuretask}"
     @doRequestResponse
