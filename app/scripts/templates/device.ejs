@@ -6,13 +6,13 @@
       <div class="list-group-item display">
         <span>Nothing to display</span>
       </div>
-      <% for (name in features) { %>
+      <% for (var fname in features) { %>
         <div class="list-group-item feature">
-          <span class="list-group-item-heading"><%= name %></span>
+          <span class="list-group-item-heading"><%= fname %></span>
           <ul class="">
-            <% for (action in features[name] ) { %>
+            <% for (var action in features[fname] ) { %>
               <div>
-                <a href="#" data-name="<%= name %>:<%= action %>">
+                <a href="#" data-name="<%= fname %>:<%= action %>">
                   <%= action %>
                 </a>
               </div>
