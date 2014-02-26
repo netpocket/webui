@@ -38,22 +38,31 @@ class nccWebui.Models.ConnectionModel extends Backbone.Model
       args: options.args
 
   # pattern for a stream
-  doStream: (name, options) ->
-    name = "#{options.target}:stream:#{name}"
-    if @isStreaming[name]? and @isStreaming[name].isActive
-      console.log("stream #{name} has not yet ended")
-      false
-    else
-      @isStreaming[name] = {isActive: true, done: options.callback}
-      onChunk = =>
-        console.log("got chunk", chunk)
-      onEnd = =>
-        console.log("done receiving chunks, you can stop listening")
-        @socket.removeListener "#{name}:chunk", onChunk
-        @socket.removeListener "#{name}:end", onEnd
-        @isStreaming[name].done()
-        @isStreaming[name] = null
-        options.callback()
-      @socket.on "#{name}:chunk", onChunk
-      @socket.on "#{name}:end", onEnd
-      @emit "#{name}:begin"
+  doStream: (featuretask, options) ->
+    name = "#{options.target}:stream:#{featuretask}"
+    @doRequestResponse
+      type: 'relay'
+      target: options.target
+      args: ['open', 'stream', name]
+      callback: =>
+        if false # @isStreaming[name]? and @isStreaming[name].isActive
+          console.log("stream #{name} has not yet ended")
+          false
+        else
+          @isStreaming[name] = {isActive: true, done: options.callback}
+          onChunk = =>
+            console.log("got chunk", chunk)
+          onEnd = =>
+            console.log("done receiving chunks, you can stop listening")
+            @socket.removeListener "#{name}:chunk", onChunk
+            @socket.removeListener "#{name}:end", onEnd
+            @isStreaming[name].done()
+            @isStreaming[name] = null
+            @doRequestResponse
+              type: 'relay'
+              target: options.target
+              args: ['close', 'stream', name]
+              callback: options.callback
+          @socket.on "#{name}:chunk", onChunk
+          @socket.on "#{name}:end", onEnd
+          @emit "#{name}:begin"

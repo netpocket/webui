@@ -10,7 +10,7 @@ class nccWebui.Models.DeviceModel extends Backbone.Model
       meta = meta[i] if meta[i]?
     meta
     if meta.stream is true
-        nccWebui.connection.doStream name, options
+      nccWebui.connection.doStream name, options
     else
       nccWebui.connection.doRequestResponse options
 
