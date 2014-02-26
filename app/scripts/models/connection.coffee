@@ -16,7 +16,9 @@ class nccWebui.Models.ConnectionModel extends Backbone.Model
     @socket.on 'please identify', =>
       @emit @ident, @token, @tailData?={}
     @socket.on 'a wild device appears', (device, data) =>
-      @devices.add(_.extend(device, data))
+      model = new nccWebui.Models.DeviceModel(_.extend(device, data))
+      model.subscribeTo(@socket)
+      @devices.add(model)
     @socket.on 'a wild device disconnected', (device) =>
       @devices.remove(device)
     @isStreaming = {}
