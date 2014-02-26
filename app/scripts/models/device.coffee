@@ -1,14 +1,16 @@
 'use strict'
 
 class nccWebui.Models.DeviceModel extends Backbone.Model
-  initialize: ->
-    @pipes = []
 
   useFeature: (name, callback) ->
     path = name.split(':')
     options = @featureFactory(path, callback)
-    if @featureMeta(path).pipe is true
-      featurePipe(options)
+    meta = @get('features')
+    _.each path, (i) ->
+      meta = meta[i] if meta[i]?
+    meta
+    if meta.stream is true
+        nccWebui.connection.doStream name, options
     else
       nccWebui.connection.doRequestResponse options
 
@@ -18,14 +20,3 @@ class nccWebui.Models.DeviceModel extends Backbone.Model
     args: path
     callback: callback
 
-  featureMeta: (path) ->
-    obj = @get('features')
-    _.each path, (i) ->
-      obj = obj[i] if obj[i]?
-    obj
-
-  featurePipe: (options) ->
-    conn = new nccWebui.Models.ConnectionModel
-      devices: coll
-      token: token
-      url: 'http://'+host
