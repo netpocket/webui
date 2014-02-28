@@ -9,7 +9,8 @@ autocommit:
 	git commit -am "built static assets"
 
 push_heroku:
-	git subtree push --prefix dist heroku master
+	git push heroku `git subtree split --prefix dist master`:master --force
+	#git subtree push --prefix dist heroku master
 
 push_origin:
 	git push
