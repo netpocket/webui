@@ -1,10 +1,17 @@
 build:
 	grunt build
 
-deploy: build publish
+deploy: build autocommit heroku push
 
-forcepublish: publish
+autocommit:
+	git add .
+	git commit -am "built static assets"
+
+forcepublish: heroku
 	git push heroku `git subtree split --prefix dist master`:master --force
 
-publish:
+heroku:
 	git subtree push --prefix dist heroku master
+
+push:
+	git push
