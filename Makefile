@@ -5,6 +5,7 @@ deploy: build autocommit heroku push
 
 autocommit:
 	git add .
+	git add -u
 	git commit -am "built static assets"
 
 forcepublish: heroku

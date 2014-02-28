@@ -1,7 +1,6 @@
 'use strict'
 
 class nccWebui.Models.DeviceModel extends Backbone.Model
-
   subscribeTo: (socket) ->
     socket.on "device:#{@get('id')}:changed", (changes) =>
       @set(changes)
