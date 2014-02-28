@@ -26,8 +26,6 @@ class nccWebui.Views.DeviceView extends Backbone.View
         switch res.contentType
           when "image/url"
             @display.html('<img src="'+res.content+'"/>')
-          when "image/png (base64)"
-            @display.html('<img src="data:image/png;base64,'+res.content+'"/>')
           when "image/jpg (base64)"
             @display.html('<img src="data:image/jpeg;base64,'+res.content+'"/>')
           else
