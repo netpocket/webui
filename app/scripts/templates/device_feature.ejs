@@ -1,0 +1,8 @@
+<span class="list-group-item-heading"><%= name %></span>
+<% for (var action in actions ) { %>
+  <div>
+    <a href="#" data-name="<%= name %>:<%= action %>">
+      <%= action %>
+    </a>
+  </div>
+<% } %>
