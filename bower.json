@@ -8,7 +8,7 @@
     "backbone": "~1.0.0",
     "modernizr": "~2.6.2",
     "js-beautify": "~1.4.2",
-    "backbone.bootstrap-modal": "git+ssh://git@github.com/powmedia/backbone.bootstrap-modal.git"
+    "backbone.bootstrap-modal": "~0.9.1"
   },
   "devDependencies": {}
 }
