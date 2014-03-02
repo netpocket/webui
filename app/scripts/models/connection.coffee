@@ -38,6 +38,7 @@ class nccWebui.Models.ConnectionModel extends Backbone.Model
       listen: "once"
       cmd: "#{options.type} request"
       args: options.args
+      params: options.params
 
   # pattern for a stream
   # might be overthinking this -- archive for now

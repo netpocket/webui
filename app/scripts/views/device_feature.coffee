@@ -15,11 +15,23 @@ class nccWebui.Views.DeviceFeatureView extends Backbone.View
 
   useFeature: (e) ->
     e.preventDefault()
-    task = $(e.target).data('name')
-    view = new nccWebui.Views.DeviceFeatureResponseModalView({device:@device})
-    modal = new Backbone.BootstrapModal({
+    text = $(e.target).data('name')
+    action = text.split(':')
+    meta = @device.getFeatureMetadata(action)
+    view = new nccWebui.Views.DeviceFeatureResponseModalView
+      device:@device
+      feature: @feature
+      action: action
+      meta: meta
+    modal = new Backbone.BootstrapModal(_.extend({
       content: view
-      title: "#{@device.get('name')} #{task}"
+      title: "#{@device.get('name')}>#{text}"
       animate: true
-    }).open()
-    @device.useFeature task, view.render
+      okText: "Done"
+      cancelText: false
+    }, (meta.modal?={}))).open()
+    view.ok = modal.$('.modal-footer .btn.ok')
+    view.ok.button('loading')
+    @device.useFeature action, meta, (err,res) ->
+      view.render(err,res, modal)
+      view.ok.button('reset')
