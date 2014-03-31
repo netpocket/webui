@@ -4,7 +4,9 @@
 <div class="panel-body">
   <div class="list-group">
     <div class="list-group-item display">
-      <span>Nothing to display</span>
+      <% if (typeof display === "object") { %>
+        <img src="data:image/jpeg;base64,<%= display.content %>"/>
+      <% } %>
     </div>
   </div>
 </div>
