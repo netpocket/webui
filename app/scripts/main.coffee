@@ -11,3 +11,4 @@ window.nccWebui =
 $ ->
     'use strict'
     nccWebui.init()
+    $('#relayURL').keyup -> $('#enter-relay').attr('href', '#ncc/token/'+$('#relayURL').val())
