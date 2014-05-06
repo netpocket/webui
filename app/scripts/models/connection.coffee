@@ -7,6 +7,7 @@ class nccWebui.Models.ConnectionModel extends Backbone.Model
   initialize: (options) ->
     _.extend(@, options)
     @socket = Primus.connect @url
+    @socket.on 'error', options.error
     @socket.on 'open', ->
       console.log 'connected to relay'
     @socket.on 'data', (data) =>
